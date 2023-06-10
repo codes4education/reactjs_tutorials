@@ -1,11 +1,13 @@
-import React from "react";
+import React, { Component } from "react";
 
-// export function User() {
-//   return <h1>Functional Component</h1>;
-// }
-
-function User() {
-  return <h1>Functional Component</h1>;
+export default class User extends Component {
+  render() {
+    return (
+      <>
+        <h2>User Page</h2>
+      </>
+    );
+  }
 }
 
-export default User;
+// export default User;

@@ -1,21 +1,23 @@
 import "./App.css";
-// import { User } from "./User";
 import User from "./User";
 
 function App() {
-  return (
-    <div className="App">
-      <h1>Hello World !!</h1>
+  function Common() {
+    return <div>Common Component</div>;
+  }
 
-      <User />
-      <User />
-    </div>
+  return (
+    <>
+      <div className="App">
+        <h1>Hello World !!</h1>
+
+        <User />
+
+        {/* {Common()} */}
+        <Common />
+      </div>
+    </>
   );
 }
-
-// Inside the app.js
-// function User() {
-//   return <h1>Functional Component</h1>;
-// }
 
 export default App;

@@ -1,38 +1,28 @@
+import React, { useState } from "react";
 import "./App.css";
+import Counter from "./Counter";
 
 function App() {
-  // Example 1
-  const demo = () => {
-    alert("Hello Everyone !!");
-  };
+  // example 1
+  let [data, setData] = useState("Code4education");
 
-  // Example 5
-  let data = "Code4Education";
-  const demo1 = () => {
-    data = "Bhaskar Gupta";
+  const updateData = () => {
+    setData("Bhaskar Gupta");
     alert(data);
   };
+
+  console.log("Render------");
 
   return (
     <>
       <div className="App">
-        {/* Example 5 Print your variable data */}
         <h1>{data}</h1>
 
-        {/* Example 1 onLoad Function Call Automative  */}
-        <button onClick={demo()}>Click Me</button>
+        <button onClick={updateData}>Update Value</button>
+        <br />
+        <br />
 
-        {/* Example 2 When you clicked the button */}
-        <button onClick={demo}>Click Me</button>
-
-        {/* Example 3 Inline Define Alert Box Method */}
-        <button onClick={() => alert("Hello Everyone !!")}>Click Me</button>
-
-        {/* Example 4 Function call with Arrow function Method */}
-        <button onClick={() => demo()}>Click Me</button>
-
-        {/* Example 5 Variables data with Function  */}
-        <button onClick={demo1}>Click Me</button>
+        <Counter />
       </div>
     </>
   );

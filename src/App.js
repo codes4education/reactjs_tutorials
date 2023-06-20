@@ -1,31 +1,37 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import "./App.css";
-import Counter from "./Counter";
 
-function App() {
-  // example 1
-  let [data, setData] = useState("Code4education");
+class App extends Component {
+  constructor() {
+    super();
 
-  const updateData = () => {
-    setData("Bhaskar Gupta");
-    alert(data);
-  };
+    this.state = {
+      // data: "Code4education",
+      data: 1,
+    };
+  }
 
-  console.log("Render------");
+  demo() {
+    // alert("Class Component");
 
-  return (
-    <>
-      <div className="App">
-        <h1>{data}</h1>
+    this.setState({
+      // data: "Bhaskar Gupta",
+      data: this.state.data + 1,
+    });
+  }
 
-        <button onClick={updateData}>Update Value</button>
-        <br />
-        <br />
+  render() {
+    console.log(this.state.data);
 
-        <Counter />
-      </div>
-    </>
-  );
+    return (
+      <>
+        <div className="App">
+          <h1>{this.state.data}</h1>
+
+          <button onClick={() => this.demo()}>Click Me</button>
+        </div>
+      </>
+    );
+  }
 }
-
 export default App;

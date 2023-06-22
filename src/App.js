@@ -1,38 +1,30 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import "./App.css";
-import UserCard from "./UserCard";
+import UserList from "./UserList";
 
-function App() {
-  // Example 3
-  const [name, setName] = useState("Bhaskar Gupta");
+class App extends Component {
+  constructor() {
+    super();
+    this.state = {
+      name: "Bhaskar Gupta",
+    };
+  }
+  render() {
+    return (
+      <>
+        <div className="App">
+          <h1>Props in React.</h1>
+          {/* <UserList name="Bhaskar Gupta" email="Bhaskar@gmail.com" /> */}
 
-  // Example 2
-  // const usersData = [
-  //   { name: "John Doe", age: 25, email: "john.doe@example.com" },
-  //   { name: "Jane Smith", age: 30, email: "jane.smith@example.com" },
-  //   { name: "Bob Johnson", age: 28, email: "bob.johnson@example.com" },
-  // ];
-  return (
-    <>
-      <div className="App">
-        <h1>Props in React.</h1>
+          {/* Example 2 */}
+          <UserList name={this.state.name} email="Bhaskar@gmail.com" />
 
-        <UserCard name={name} />
-
-        {/* Example 3 */}
-        <button onClick={() => setName("Code4education")}>Update Props</button>
-
-        {/* Example 2 */}
-        {/* {usersData.map((user, index) => (
-          <UserCard
-            key={index}
-            name={user.name}
-            age={user.age}
-            email={user.email}
-          />
-        ))} */}
-      </div>
-    </>
-  );
+          <button onClick={() => this.setState({ name: "Code4education" })}>
+            Update Props
+          </button>
+        </div>
+      </>
+    );
+  }
 }
 export default App;

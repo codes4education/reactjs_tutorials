@@ -1,6 +1,6 @@
 .App {
   text-align: center;
-  padding:2rem;
+  padding: 2rem;
 }
 
 .App-logo {
@@ -38,14 +38,19 @@
   }
 }
 
-.status{
-  width:300px;
-  height:300px;
-  margin:0 auto 40px;
+.status {
+  width: 300px;
+  height: 300px;
+  margin: 0 auto 40px;
   display: flex;
   align-items: center;
   justify-content: center;
   border-radius: 5%;
-  background:green;
-  color:#fff;
+  background: green;
+  color: #fff;
+}
+.error {
+  color: #ff0000;
+  display: inline-block;
+  padding: 0 10px;
 }

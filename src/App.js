@@ -1,13 +1,13 @@
 import React from "react";
 import "./App.css";
-import Profile from "./Profile";
+import FormValidation from "./FormValidation";
 function App() {
   return (
     <>
       <div className="App">
-        <h1>Conditional Rendering Method</h1>
+        <h1>Form Validation</h1>
 
-        <Profile />
+        <FormValidation />
       </div>
     </>
   );

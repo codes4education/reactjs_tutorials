@@ -1,23 +1,39 @@
-import React, { useState } from "react";
+import React, { Component } from "react";
 import "./App.css";
-import RenderMethod from "./RenderMethod";
-function App() {
-  // const [name, setName] = useState("Code4education");
-  return (
-    <>
-      <div className="App">
-        <h1>Lifecycle Render Methods In React.</h1>
+class App extends Component {
+  // Example 1
+  constructor() {
+    super();
+    this.state = {
+      count: 0,
+    };
+    console.log("constructor Called!!");
+  }
 
-        {/* Example 2 */}
-        {/* <RenderMethod name={name} /> */}
+  // Example 2
+  incrementCount = () => {
+    this.setState((prevState) => ({
+      count: prevState.count + 1,
+    }));
+  };
 
-        {/* Example 3 */}
-        <RenderMethod />
+  // Example 1
+  componentDidMount() {
+    console.log("Component Did Mount!!");
+  }
+  render() {
+    console.log("Render!!");
+    return (
+      <>
+        <div className="App">
+          <h1>Lifecycle componentDidMount Method</h1>
 
-        {/* Example 2 */}
-        {/* <button onClick={() => setName("Bhaskar Gupta")}>Update Name</button> */}
-      </div>
-    </>
-  );
+          {/* Example 2 */}
+          <h2>Count:{this.state.count}</h2>
+          <button onClick={this.incrementCount}>Increment</button>
+        </div>
+      </>
+    );
+  }
 }
 export default App;

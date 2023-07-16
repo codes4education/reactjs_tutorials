@@ -5,47 +5,27 @@ class App extends Component {
   constructor() {
     super();
     this.state = {
-      name: "Code4education",
       count: 0,
     };
-    // console.log("constructor Called!!");
   }
 
-  // Example 1
-  componentDidUpdate(prevProps, prevState) {
-    // Example 1
-    console.log(prevState.count, this.state.count);
+  shouldComponentUpdate(nextProps, nextState) {
+    console.log("shouldComponentUpdate !!", this.state.count);
 
-    if ((this.state.count, prevState.count)) {
-      alert("working");
-      console.log(
-        "componentDidUpdate Called!!",
-        prevState.count,
-        this.state.count,
-        prevProps
-      );
+    if (nextState.count < 5) {
+      return true;
     }
-
-    // if (this.state.count < 10) {
-    //   this.setState({ count: this.state.count + 1 });
-    // }
+    return false;
   }
 
   render() {
-    // Example 1
-    // console.log("Render Called!!");
     return (
       <>
         <div className="App">
-          <h1>Lifecycle componentDidUpdate Method</h1>
+          <h1>Lifecycle shouldComponentUpdate Method</h1>
           <h2>Count: {this.state.count}</h2>
 
-          {/* Example 2 */}
-          {/* <button onClick={() => this.setState({ name: "Bhaskar Gupta" })}>
-            Update State
-          </button> */}
-
-          {/* Example 3 */}
+          {/* Example 1 */}
           <button
             onClick={() => this.setState({ count: this.state.count + 1 })}
           >

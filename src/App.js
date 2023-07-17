@@ -1,35 +1,27 @@
 import React, { Component } from "react";
 import "./App.css";
+import Unmount from "./Unmount";
 class App extends Component {
   // Example 1
   constructor() {
     super();
     this.state = {
-      count: 0,
+      show: true,
     };
   }
 
-  shouldComponentUpdate(nextProps, nextState) {
-    console.log("shouldComponentUpdate !!", this.state.count);
-
-    if (nextState.count < 5) {
-      return true;
-    }
-    return false;
-  }
-
   render() {
+    console.log("clicked", this.state.show);
     return (
       <>
         <div className="App">
-          <h1>Lifecycle shouldComponentUpdate Method</h1>
-          <h2>Count: {this.state.count}</h2>
+          <h1>Lifecycle Methods</h1>
 
-          {/* Example 1 */}
-          <button
-            onClick={() => this.setState({ count: this.state.count + 1 })}
-          >
-            Update State
+          {this.state.show ? <Unmount /> : <h2>Removed</h2>}
+
+          {/* Example 2 */}
+          <button onClick={() => this.setState({ show: !this.state.show })}>
+            Removed Component
           </button>
         </div>
       </>

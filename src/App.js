@@ -1,31 +1,26 @@
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 import "./App.css";
-import Unmount from "./Unmount";
-class App extends Component {
+function App() {
+  // Example 2
+  const [count, setCount] = useState(0);
+
   // Example 1
-  constructor() {
-    super();
-    this.state = {
-      show: true,
-    };
-  }
+  useEffect(() => {
+    // alert("useEffect Hook!");
+    console.log("useEffect Hook!");
 
-  render() {
-    console.log("clicked", this.state.show);
-    return (
-      <>
-        <div className="App">
-          <h1>Lifecycle Methods</h1>
+    console.log("Updating");
+  });
+  return (
+    <>
+      <div className="App">
+        <h1>useEffect Hook</h1>
 
-          {this.state.show ? <Unmount /> : <h2>Removed</h2>}
-
-          {/* Example 2 */}
-          <button onClick={() => this.setState({ show: !this.state.show })}>
-            Removed Component
-          </button>
-        </div>
-      </>
-    );
-  }
+        {/* Example 2 */}
+        <h2>Count: {count}</h2>
+        <button onClick={() => setCount(count + 1)}>Update Count</button>
+      </div>
+    </>
+  );
 }
 export default App;

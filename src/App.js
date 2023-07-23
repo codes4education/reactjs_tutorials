@@ -1,33 +1,45 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import "./App.css";
-import UserTotal from "./UserTotal";
+
+// Example 2
+import "./style.css";
+
+// Example 4
+import Style from "./style.module.css";
+
+// Example 5
+import "./style.scss";
+
 function App() {
-  // Example 2
-  const [count, setCount] = useState(0);
-  const [total, setTotal] = useState(100);
-
-  useEffect(() => {
-    // console.log("After Render Total!!");
-  }, [total]);
-
-  useEffect(() => {
-    // console.log("After Render Count!!");
-  }, [count]);
+  // Example 3
+  const headline = {
+    color: "#fff",
+    backgroundColor: "blue",
+  };
 
   return (
     <>
       <div className="App">
-        <h1>useEffect With Condition Hook</h1>
+        <h1>Styles Type In React.</h1>
 
-        <UserTotal count={count} total={total} />
+        {/* Example 1 Inline CSS */}
+        <h1 style={{ color: "#fff", backgroundColor: "green" }}>
+          Inline Method
+        </h1>
 
-        {/* Example 2 */}
-        {/* <h2>Count:{count}</h2> */}
-        <button onClick={() => setCount(count + 1)}>Update Count</button>
+        {/* Example 2 Normal CSS */}
+        <h1 className="primary">Normal Method</h1>
 
-        {/* Example 3 */}
-        {/* <h2>Total:{total}</h2> */}
-        <button onClick={() => setTotal(total + 1)}>Update Total</button>
+        {/* Example 3 CSS In JS */}
+        <h1 style={headline}>CSS In JS Method</h1>
+
+        {/* Example 4 CSS Module */}
+        <h1 className={Style.title}>CSS Module Method</h1>
+
+        {/* Example 5 Sass & Scss */}
+        <h1 className="primary-sass">
+          Sass & <span>Scss</span> Method
+        </h1>
       </div>
     </>
   );

@@ -1,63 +1,47 @@
 import React from "react";
 import "./App.css";
 
+import Table from "react-bootstrap/Table";
+
 function App() {
   // Example 1
-  const names = ["Alice", "Bob", "Charlie", "Bhaskar"];
-
-  // Exmaple 2 Array of Objects
-  const products = [
-    {
-      id: 1,
-      name: "Product 1",
-      price: 10,
-    },
-    {
-      id: 2,
-      name: "Product 2",
-      price: 20,
-    },
-    {
-      id: 3,
-      name: "Product 3",
-      price: 30,
-    },
-    {
-      id: 4,
-      name: "Product 4",
-      price: 40,
-    },
+  const tableData = [
+    { id: 1, name: "John Doe", age: 25, location: "New York" },
+    { id: 2, name: "Jane Smith", age: 25, location: "London" },
+    { id: 3, name: "Amit Kumar", age: 20, location: "India" },
+    { id: 4, name: "John Wick", age: 28, location: "USA" },
+    // Add more data here if needed
   ];
-
-  // Example 3 return map function
-  const fruits = ["Apple", "Banana", "Orange", "Mango"];
-
-  // Using map to tranform the array of fruits into an array of react elements
-  const fruitItems = fruits.map((fruit, index) => <li key={index}>{fruit}</li>);
 
   return (
     <>
       <div className="App">
-        <h1>Array With Map Function.</h1>
+        <h1>Bootstrap Table In React.</h1>
 
-        {/* Example 1 */}
-        <ul>
-          {names.map((name, index) => (
-            <li key={index}>{name}</li>
-          ))}
-        </ul>
-
-        {/* Example 2 */}
-        <ul>
-          {products.map((product) => (
-            <li key={product.id}>
-              {product.name} - ${product.price}
-            </li>
-          ))}
-        </ul>
-
-        {/* Example 3 */}
-        <ul>{fruitItems}</ul>
+        <div>
+          <Table striped="columns" responsive>
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Name</th>
+                <th>Age</th>
+                <th>Location</th>
+              </tr>
+            </thead>
+            <tbody>
+              {tableData.map((data) =>
+                data.age === 25 ? (
+                  <tr key={data.id}>
+                    <td>{data.id}</td>
+                    <td>{data.name}</td>
+                    <td>{data.age}</td>
+                    <td>{data.location}</td>
+                  </tr>
+                ) : null
+              )}
+            </tbody>
+          </Table>
+        </div>
       </div>
     </>
   );

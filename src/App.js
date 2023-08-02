@@ -1,22 +1,51 @@
-import React, { useState } from "react";
+import React, { useState, useMemo } from "react";
 import "./App.css";
-import ChildComponent from "./ChildComponent";
 
 function App() {
-  // Exmaple 1
+  // Example 1
+  const [number1, setNumber1] = useState(0);
+  const [number2, setNumber2] = useState(0);
   const [count, setCount] = useState(0);
 
   // Example 1
-  console.log("parent component!!");
+  // const sum = () => {
+  //   console.log("Calculating sum...! ");
+  //   return number1 + number2;
+  // };
+
+  // Example 2
+  const sum = useMemo(() => {
+    console.log("Calculating sum...! ");
+    return number1 + number2;
+  }, [number1, number2]);
 
   return (
     <div className="App">
-      <h1>Memo In React.</h1>
+      <h1>useMemo In React.</h1>
 
-      <ChildComponent count={count} />
+      {/* Example 1 */}
+      <div>
+        <input
+          type="number"
+          value={number1}
+          onChange={(e) => setNumber1(Number(e.target.value))}
+        />
+        <input
+          type="number"
+          value={number2}
+          onChange={(e) => setNumber2(Number(e.target.value))}
+        />
 
-      <h2>Count:{count}</h2>
-      <button onClick={() => setCount(count + 1)}>Count+</button>
+        {/* Example 1 */}
+        {/* <p>Sum: {sum()}</p> */}
+
+        {/* Example 2 */}
+        <p>Sum: {sum}</p>
+
+        {/* Example 1 */}
+        <h2>Count Number: {count}</h2>
+        <button onClick={() => setCount(count + 1)}>Click ++</button>
+      </div>
     </div>
   );
 }

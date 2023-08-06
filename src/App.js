@@ -1,40 +1,23 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import "./App.css";
-import ChildComponent from "./ChildComponent";
 
 function App() {
   // Example 1
-  // const inputRef = useRef(null);
-  // const updateInput = () => {
-  //   inputRef.current.value = "1000";
-  //   inputRef.current.focus();
-  //   //   inputRef.current.style.color = "white";
-  //   //   inputRef.current.style.background = "blue";
-  // };
+  const [inputValue, setInputValue] = useState("");
 
-  // Example 2
-  const childRef = useRef();
-
-  const handleButtonClick = () => {
-    if (childRef.current) {
-      childRef.current.handleChildButtonClick();
-    }
+  const handleChange = (event) => {
+    setInputValue(event.target.value);
+    console.log(inputValue);
   };
 
   return (
     <div className="App">
-      <h1>forwardRef In React.</h1>
+      <h1>Controlled Component</h1>
 
       {/* Example 1 */}
-      {/* <ChildComponent ref={inputRef} />
-      <button onClick={updateInput}>Update Button</button> */}
+      <input type="text" value={inputValue} onChange={handleChange} />
 
-      <ChildComponent ref={childRef} />
-
-      {/* Example 2 */}
-      <button onClick={handleButtonClick}>
-        Click Child Button From Parent
-      </button>
+      <p>Current Value: {inputValue}</p>
     </div>
   );
 }

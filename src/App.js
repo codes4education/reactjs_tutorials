@@ -1,23 +1,29 @@
-import React, { useState } from "react";
+import React, { useRef } from "react";
 import "./App.css";
 
 function App() {
   // Example 1
-  const [inputValue, setInputValue] = useState("");
+  let inputRef = useRef(null);
+  let inputRef2 = useRef(null);
 
-  const handleChange = (event) => {
-    setInputValue(event.target.value);
-    console.log(inputValue);
+  const submitForm = (e) => {
+    e.preventDefault();
+    console.log("First Input Value:", inputRef.current.value);
+    console.log("Second Input Value:", inputRef2.current.value);
+
+    let input3 = document.getElementById("input3").value;
+    console.log("Input3 Value:", input3);
   };
-
   return (
     <div className="App">
-      <h1>Controlled Component</h1>
+      <h1>Uncontrolled Component</h1>
 
-      {/* Example 1 */}
-      <input type="text" value={inputValue} onChange={handleChange} />
-
-      <p>Current Value: {inputValue}</p>
+      <form onSubmit={submitForm}>
+        <input type="text" ref={inputRef} />
+        <input type="text" ref={inputRef2} />
+        <input type="text" id="input3" />
+        <button>Submit</button>
+      </form>
     </div>
   );
 }

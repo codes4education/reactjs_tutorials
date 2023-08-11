@@ -1,29 +1,44 @@
-import React, { useRef } from "react";
+import React, { useState } from "react";
 import "./App.css";
 
 function App() {
-  // Example 1
-  let inputRef = useRef(null);
-  let inputRef2 = useRef(null);
+  // Higher Order Component
+  const withCounter = (WrappedComponent) => {
+    return function WithCounter(props) {
+      const [count, setCount] = useState(0);
+      const increment = () => {
+        setCount(count + 1);
+      };
 
-  const submitForm = (e) => {
-    e.preventDefault();
-    console.log("First Input Value:", inputRef.current.value);
-    console.log("Second Input Value:", inputRef2.current.value);
-
-    let input3 = document.getElementById("input3").value;
-    console.log("Input3 Value:", input3);
+      return (
+        <WrappedComponent {...props} count={count} increment={increment} />
+      );
+    };
   };
+
+  // Functional Component
+  const Counter = ({ count, increment }) => {
+    return (
+      <div>
+        <p>Count: {count}</p>
+        <button onClick={increment}>Increment</button>
+      </div>
+    );
+  };
+
+  // Wrap Counter Component with the WithCounter HOC
+  const CounterWithEnhancement = withCounter(Counter);
+
   return (
     <div className="App">
-      <h1>Uncontrolled Component</h1>
+      <h1>Higher Order Component</h1>
 
-      <form onSubmit={submitForm}>
-        <input type="text" ref={inputRef} />
-        <input type="text" ref={inputRef2} />
-        <input type="text" id="input3" />
-        <button>Submit</button>
-      </form>
+      {/* Example 1 */}
+      {/* <h2>Count: {count}</h2>
+      <button onClick={() => setCount(count + 1)}>Update Count</button> */}
+
+      {/* Example 2 */}
+      <CounterWithEnhancement />
     </div>
   );
 }

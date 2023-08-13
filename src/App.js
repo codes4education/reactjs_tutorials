@@ -1,44 +1,32 @@
-import React, { useState } from "react";
+import React, { useState, useCallback } from "react";
 import "./App.css";
+import ChildComponent from "./ChildComponent";
 
 function App() {
-  // Higher Order Component
-  const withCounter = (WrappedComponent) => {
-    return function WithCounter(props) {
-      const [count, setCount] = useState(0);
-      const increment = () => {
-        setCount(count + 1);
-      };
+  // Normal Example 1
+  const [count1, setCount1] = useState(0);
+  console.log("Parent Rendered!!");
 
-      return (
-        <WrappedComponent {...props} count={count} increment={increment} />
-      );
-    };
-  };
-
-  // Functional Component
-  const Counter = ({ count, increment }) => {
-    return (
-      <div>
-        <p>Count: {count}</p>
-        <button onClick={increment}>Increment</button>
-      </div>
-    );
-  };
-
-  // Wrap Counter Component with the WithCounter HOC
-  const CounterWithEnhancement = withCounter(Counter);
+  // Example 2
+  const [count2, setCount2] = useState(0);
+  const incrementCount = useCallback(() => {
+    setCount2((prevCount) => prevCount + 1);
+    console.log("useCallback Hook!!");
+  }, []);
 
   return (
     <div className="App">
-      <h1>Higher Order Component</h1>
+      <h1>useCallback Hook</h1>
 
       {/* Example 1 */}
-      {/* <h2>Count: {count}</h2>
-      <button onClick={() => setCount(count + 1)}>Update Count</button> */}
+      <p>Count 1: {count1}</p>
+      <button onClick={() => setCount1(count1 + 1)}>Increment Count</button>
+      <br />
+      <br />
 
       {/* Example 2 */}
-      <CounterWithEnhancement />
+      <p>Count 2: {count2}</p>
+      <ChildComponent increment={incrementCount} />
     </div>
   );
 }

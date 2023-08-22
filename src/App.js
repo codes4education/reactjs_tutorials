@@ -1,57 +1,33 @@
-import React, { useState, useTransition, useEffect } from "react";
+import React, { useState, useEffect, useDeferredValue } from "react";
 import "./App.css";
+import List from "./List";
 
 function App() {
-  // Example 1
-  const [isPending, startTransition] = useTransition();
-  const [count, setCount] = useState(0);
+  const [input, setInput] = useState();
 
-  // useEffect
-  useEffect(() => {
-    console.log("useState Run!!");
-  }, [count]);
-
-  const handleClick = () => {
-    startTransition(() => {
-      setCount(count + 1);
-      console.log("handleClick Run!!");
-    });
+  const handleChange = (e) => {
+    setInput(e.target.value);
   };
 
   // Example 2
-  const [input, setInput] = useState();
-  const [dataList, setDataList] = useState([]);
+  const [count, setCount] = useState(0);
+  const deferredValue = useDeferredValue(count);
 
-  const DataSize = 10000;
-
-  // Function
-  const handleChange = (e) => {
-    setInput(e.target.value);
-
-    startTransition(() => {
-      const a = [];
-      for (let i = 0; i < DataSize; i++) {
-        a.push(e.target.value);
-      }
-      setDataList(a);
-    });
-  };
+  useEffect(() => {
+    console.log(`Count: ${count} \nDeferred: ${deferredValue}`);
+  });
 
   return (
     <div className="App">
-      <h1>useTransition Hook</h1>
+      <h1>useDeferredValue Hook</h1>
 
       {/* Example 1 */}
-      <h2>Count:{count}</h2>
-      <button onClick={handleClick}>Update Count</button>
+      <input type="text" value={input} onChange={handleChange} />
+      <List input={input} />
 
       {/* Example 2 */}
-      <input type="text" value={input} onChange={handleChange} />
-      {isPending
-        ? "Loading..."
-        : dataList.map((item, index) => {
-            return <div key={index}>{item}</div>;
-          })}
+      <h2>Count Number:{count}</h2>
+      <button onClick={() => setCount(count + 1)}>Update Count</button>
     </div>
   );
 }

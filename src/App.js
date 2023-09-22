@@ -1,14 +1,13 @@
 import React from "react";
 import "./App.css";
-import CounterComponent from "./CounterComponent";
-
+import GetMethod from "./GetMethod";
 function App() {
   return (
     <div className="App">
-      <h1>Custom Hook</h1>
+      <h1>Fetch API Get Method!</h1>
 
       {/* Example 1 */}
-      <CounterComponent />
+      <GetMethod />
     </div>
   );
 }

@@ -72,3 +72,6 @@ th {
 tr:nth-child(even) {
   background-color: #dddddd;
 }
+table tr td button {
+  cursor: pointer;
+}
